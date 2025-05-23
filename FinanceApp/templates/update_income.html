@@ -1,0 +1,180 @@
+{% extends 'master.html' %}
+
+{% block contents %}
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Payments | MyProtBank</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        padding: 20px;
+      }
+      .pagetitle {
+        margin-bottom: 20px;
+      }
+      .pagetitle h1 {
+        font-size: 24px;
+        color: #333;
+      }
+      .breadcrumb {
+        background: none;
+        padding: 0;
+        margin: 0;
+        font-size: 14px;
+      }
+      .breadcrumb a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .breadcrumb a:hover {
+        text-decoration: underline;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      .card h2 {
+        margin-bottom: 20px;
+        font-size: 28px;
+        text-align: center;
+        color: red;
+      }
+      .card h4 {
+        margin-bottom: 10px;
+        font-size: 20px;
+        text-align: center;
+        color: blue;
+      }
+      .card h5 {
+        margin-top: 30px;
+        font-size: 18px;
+        color: #555;
+      }
+      form {
+        margin-top: 20px;
+      }
+      table {
+        width: 100%;
+        border-spacing: 10px;
+      }
+      td {
+        vertical-align: top;
+        padding: 5px;
+      }
+      input[type="text"], input[type="email"], select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+      }
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      hr {
+        border: 0;
+        border-top: 1px solid #ddd;
+        margin: 20px 0;
+      }
+      @media (max-width: 768px) {
+        .card {
+          width: auto;
+          padding: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+          </ol>
+        </nav>
+      </div><!-- End Page Title -->
+  
+      <section class="section dashboard">
+        <div class="row">
+          <!-- Left side columns -->
+          <div class="col-lg-8">
+            <div class="row">
+              <!-- Reports -->
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h2>Welcome to Personal Finance App !!!</h2>
+                    <h4>Update Income</h4>
+                    <hr>
+                    <h5>Update Income</h5>
+                    <form method="post" action="{% url 'updateIncome' %}">
+                      {% csrf_token %}
+                      <table>
+
+                        <tr>
+                          <td>Username</td>
+                          <td><input type="text" name="username" required /></td>
+                        </tr>
+                        
+                        <tr>
+                          <td>Amount</td>
+                          <td><input type="text" name="amount" required /></td>
+                        </tr>
+
+                        <tr>
+                            <td>Date</td>
+                            <td><input type="date" name="date" required /></td>
+                        </tr>
+
+                        <tr>
+                          <td>Category</td>
+                          <td>
+                            <select name="category" required>
+                              <option>Deposit Income</option>
+                              <option>Withdraw Income</option>  
+                            </select>
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td></td>
+                          <td><input type="submit" value="Update" /></td>
+                        </tr>
+                      </table>
+                    </form>
+                  </div>
+                </div>
+              </div><!-- End Reports -->
+            </div>
+          </div><!-- End Left side columns -->
+        </div>
+      </section>
+    </main><!-- End #main -->
+  </body>
+  </html>
+
+{% endblock %}

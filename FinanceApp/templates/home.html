@@ -1,0 +1,229 @@
+{% extends 'master.html' %}
+
+{% block contents %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+
+        .container {
+            width: 50%;
+            margin: 10px auto;
+        }
+
+        /* Cards Section */
+        .cards {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+            margin-top: 0px;
+        }
+
+        .card {
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: zoomIn 0.8s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 18px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        /* Charts Section */
+        .charts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chart-container {
+            flex: 1;
+            min-width: 300px;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: linear-gradient(45deg, #5bc0de, #007bff);
+            color: white;
+            font-size: 12px;
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Compact Finance Dashboard</h1>
+    </div>
+
+    <div class="container">
+        <!-- Summary Cards -->
+        <div class="cards">
+            <div class="card">
+                <h3>Total Income</h3>
+                <p>$5000</p>
+            </div>
+            <div class="card">
+                <h3>Total Expenses</h3>
+                <p>$3000</p>
+            </div>
+            <div class="card">
+                <h3>Savings</h3>
+                <p>$2000</p>
+            </div>
+        </div>
+        <!-- <h4>Username <b>{{request.session.uname1}}</b>, <span>Your Current Income is</span> <b>{{request.session.amount1}}</b></h4> -->
+        <h4> Username is <b> {{request.session.username}}, </b>Your Income is <b> {{request.session.amount1}} </b></h4>
+
+        <!-- Charts -->
+        <div class="charts">
+            <div class="chart-container">
+                <h4>Expense Breakdown</h4>
+                <canvas id="pieChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h4>Monthly Income vs Expenses</h4>
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Rent', 'Food', 'Medical', 'Life Insurance', 'Others'],
+                datasets: [{
+                    data: [1200, 800, 400, 300, 300],
+                    backgroundColor: ['#ff6384', '#36a2eb', '#ffce56', '#4bc0c0', '#9966ff'],
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 10 } }
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                datasets: [
+                    {
+                        label: 'Income',
+                        data: [5000, 5200, 5300, 5500, 5600],
+                        backgroundColor: '#36a2eb',
+                    },
+                    {
+                        label: 'Expenses',
+                        data: [3000, 3200, 3100, 3300, 3400],
+                        backgroundColor: '#ff6384',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { font: { size: 10 } }
+                    }
+                },
+                scales: {
+                    x: { title: { display: true, text: 'Months' } },
+                    y: { title: { display: true, text: 'Amount ($)' } }
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
+{% endblock %}

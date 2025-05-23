@@ -1,0 +1,105 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Message</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            height:400px;
+            width:400px;
+            backdrop-filter:sepia(90%);
+            align-items: center;
+            margin: 123px 569px;
+            padding:10px 10px;
+            text-align: center;
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1> {{ msg }}</h1>
+        <a href="{% url 'index' %}">Try Again Go to Login Page!!</a><br><br>
+        <a href="{% url 'home' %}"> Go to Home Page!!</a>
+    </div>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            padding: 20px 30px;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .container h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #4CAF50;
+        }
+
+        .container a {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+
+        .container a:hover {
+            background-color: #0056b3;
+        }
+
+        .container a:nth-child(2) {
+            background-color: #28A745;
+        }
+
+        .container a:nth-child(2):hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ msg }}</h1>
+        <a href="{% url 'index' %}">Try Again - Go to Login Page</a><br>
+        <a href="{% url 'home' %}">Go to Home Page</a>
+    </div>
+</body>
+</html>

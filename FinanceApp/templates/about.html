@@ -1,0 +1,111 @@
+{% extends 'master.html' %}
+
+{% block contents %}
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>About</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">About</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+    
+
+      <title>About - Personal Finance</title>
+      <style>
+        /* Base Styles */
+        body {
+          font-family: 'Arial', sans-serif;
+          margin: 0;
+          padding: 0;
+          line-height: 1.6;
+          background-color: #f9f9f9;
+          color: #333;
+        }
+    
+        /* About Section */
+        .about-section {
+          padding: 50px 20px;
+          background-color: #fff;
+        }
+    
+        .about-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          align-items: center;
+        }
+    
+        .about-text {
+          flex: 1;
+          min-width: 300px;
+        }
+    
+        .about-text h1 {
+          font-size: 2.5rem;
+          color: #007BFF;
+          margin-bottom: 20px;
+        }
+    
+        .about-text p {
+          font-size: 1rem;
+          margin-bottom: 15px;
+          color: #555;
+        }
+    
+        .about-image {
+          flex: 1;
+          min-width: 300px;
+          display: flex;
+          justify-content: center;
+        }
+    
+        .about-image img {
+          max-width: 100%;
+          border-radius: 10px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .about-container {
+            flex-direction: column;
+            text-align: center;
+          }
+    
+          .about-image img {
+            margin-bottom: 20px;
+          }
+        }
+      </style>
+    
+    <section class="about-section">
+      <div class="about-container">
+        <!-- Text Content -->
+        <div class="about-text">
+          <h1>About Us</h1>
+          <p>
+            Welcome to <strong>Personal Finance App </strong>, your trusted personal finance management tool. 
+            Our mission is to help you take control of your financial journey by providing an easy-to-use platform 
+            for tracking income, managing expenses, and setting goals for a better financial future.
+          </p>
+          <p>
+            Whether you're saving for a dream, budgeting for daily needs, or planning for long-term goals, 
+            FinTrack is here to simplify your finances and empower your decisions.
+          </p>
+        </div>
+        <!-- Image Content -->
+        <div class="about-image">
+          <img src="../static/img/about.jfif" alt="Personal Finance Illustration">
+        </div>
+      </div>
+    </section>
+    
+{% endblock %}
